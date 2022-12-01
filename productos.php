@@ -3,6 +3,14 @@
 	require 'sesiones.php';
 	require_once 'bd.php';
 	comprobar_sesion();
+	if(isset($_GET["producto"])){
+		$uds = $_GET["unidades"];
+		$producto = $_GET['producto'];
+		$message = "Añadidas al carrito $uds unidades de $producto.<br>";
+	}else{
+		$message = "";
+	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +43,8 @@
 			<input type = 'submit' value='Comprar'><input name = 'cod' type='hidden' value = '$cod'>
 			</form></td></tr>";
 		}
-		echo "</table>"			
+		echo "</table>";
+		echo "<br><p>$message</p>";
 		?>				
 	</body>
 </html>
