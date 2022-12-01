@@ -1,6 +1,6 @@
 ﻿<?php
 use PHPMailer\PHPMailer\PHPMailer;
-require dirname(__FILE__)."/../vendor/autoload.php";
+require "./vendor/autoload.php";
 function enviar_correos($carrito, $pedido, $correo){
 	$cuerpo = crear_correo($carrito, $pedido, $correo);
 	return enviar_correo_multiples("$correo, pedidos@empresafalsa.com", 

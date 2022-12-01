@@ -13,12 +13,13 @@
 	<body>
 		
 		<?php 
-		require 'cabecera.php';			
-		$productos = cargar_productos(array_keys($_SESSION['carrito']));
-		if($productos === FALSE){
+		require 'cabecera.php';	
+		if($_SESSION['carrito']===array()){
 			echo "<p>No hay productos en el pedido</p>";
 			exit;
 		}
+		$productos = cargar_productos(array_keys($_SESSION['carrito']));
+	
 		echo "<h2>Carrito de la compra</h2>";
 		echo "<table>"; //abrir la tabla
 		echo "<tr><th>Nombre</th><th>Descripción</th><th>Peso</th><th>Unidades</th><th>Eliminar</th></tr>";

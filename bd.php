@@ -61,7 +61,7 @@ function cargar_categoria($codCat){
 function cargar_productos_categoria($codCat){
 	$res = leer_config(dirname(__FILE__)."/configuracion.xml", dirname(__FILE__)."/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);	
-	$sql = "select * from productos where categoria  = $codCat";	
+	$sql = "select * from productos where CodCat  = $codCat";	
 	$resul = $bd->query($sql);	
 	if (!$resul) {
 		return FALSE;
@@ -101,7 +101,7 @@ function insertar_pedido($carrito, $codRes){
 	$pedido = $bd->lastInsertId();
 	// insertar las filas en pedidoproductos
 	foreach($carrito as $codProd=>$unidades){
-		$sql = "insert into pedidosproductos(Pedido, Producto, Unidades) 
+		$sql = "insert into pedidosproductos(CodPed, CodProd, Unidades) 
 		             values( $pedido, $codProd, $unidades)";			
 		 $resul = $bd->query($sql);	
 		if (!$resul) {
