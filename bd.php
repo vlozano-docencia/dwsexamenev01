@@ -145,4 +145,26 @@ function cargar_pedidos(){
 	$res=$res->fetchAll();
 	return $res;
 }
+function cambiar_estado($codPed){
+	$res = leer_config(dirname(__FILE__)."/configuracion.xml", dirname(__FILE__)."/configuracion.xsd");
+	$bd = new PDO($res[0], $res[1], $res[2]);
+	$q = "SELECT Enviado FROM pedidos WHERE CodPed ='$codPed'";
+	$res = $bd->query($q);
+	if (!$res) {
+		return FALSE;
+	}
+	$res=$res->fetchAll();
+	$estado = $res[0]["Enviado"];
+	if($estado == 0 ){
+		$estado = 1;
+	}else{
+		$estado = 0;
+	}
+	$q = "UPDATE pedidos SET Enviado = '$estado' WHERE CodPed = '$codPed'";
+	$res = $bd->query($q);
+	if (!$res) {
+		return FALSE;
+	}
+	return TRUE;
+}
 
