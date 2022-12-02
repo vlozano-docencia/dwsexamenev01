@@ -190,3 +190,14 @@ function modificar($cod, $Correo, $Clave, $Pais, $CP, $Ciudad, $Direccion, $Rol)
 	}
 	return $q;
 }
+function crear($Correo, $Clave, $Pais, $CP, $Ciudad, $Direccion, $Rol){
+	$res = leer_config(dirname(__FILE__)."/configuracion.xml", dirname(__FILE__)."/configuracion.xsd");
+	$bd = new PDO($res[0], $res[1], $res[2]);
+	
+	$q = "INSERT INTO restaurantes (Correo, Clave, Pais, CP, Ciudad, Direccion, Rol) VALUES ('$Correo', '$Clave', '$Pais', '$CP', '$Ciudad', '$Direccion', '$Rol')";
+	$res = $bd->query($q);
+	if (!$res) {
+		return FALSE;
+	}
+	return $q;
+}

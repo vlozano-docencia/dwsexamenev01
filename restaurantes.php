@@ -43,6 +43,17 @@
 			</td></form></tr>";
 		}
 		echo "</table>";
+		echo "<h1>". "CREAR NUEVO USUARIO". "</h1>";
+	
+		echo "<table>"; //abrir la tabla
+		echo "<tr><th>Correo</th><th>Clave</th><th>Pais</th><th>CP</th><th>Ciudad</th><th>Direccion</th><th>Rol</th></tr>";
+		
+		echo "<tr><form action = 'crear.php' method = 'POST'><td><input type='text' name=Correo ></td><td><input type='text'  name=Clave ></td><td><input type='text'  name=Pais ></td><td><input type='text'  name=CP ></td><td><input type='text'  name=Ciudad></td><td><input type='text'  name=Direccion></td><td><input type='text'  name=Rol></td>
+		<td>
+		<input type = 'submit' value='Crear'>
+		</td></form></tr>";
+		
+		echo "</table>";
 		?>				
 	</body>
 </html>
