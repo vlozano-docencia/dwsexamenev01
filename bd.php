@@ -134,4 +134,15 @@ function getNombreProducto($CodProd){
 	$res=$res->fetchAll();
 	return $res[0]["Nombre"];
 }
+function cargar_pedidos(){
+	$res = leer_config(dirname(__FILE__)."/configuracion.xml", dirname(__FILE__)."/configuracion.xsd");
+	$bd = new PDO($res[0], $res[1], $res[2]);
+	$q = "SELECT * FROM pedidos";
+	$res = $bd->query($q);
+	if (!$res) {
+		return FALSE;
+	}
+	$res=$res->fetchAll();
+	return $res;
+}
 
