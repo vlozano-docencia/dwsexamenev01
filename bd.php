@@ -21,7 +21,7 @@ function leer_config($nombre, $esquema){
 function comprobar_usuario($nombre, $clave){
 	$res = leer_config(dirname(__FILE__)."/configuracion.xml", dirname(__FILE__)."/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);
-	$ins = "select codRes, correo from restaurantes where correo = '$nombre' 
+	$ins = "select codRes, correo, Rol from restaurantes where correo = '$nombre' 
 			and clave = '$clave'";
 	$resul = $bd->query($ins);	
 	if($resul->rowCount() === 1){		
