@@ -168,3 +168,25 @@ function cambiar_estado($codPed){
 	return TRUE;
 }
 
+function cargar_usuarios(){
+	$res = leer_config(dirname(__FILE__)."/configuracion.xml", dirname(__FILE__)."/configuracion.xsd");
+	$bd = new PDO($res[0], $res[1], $res[2]);
+	$q = "SELECT * FROM restaurantes";
+	$res = $bd->query($q);
+	if (!$res) {
+		return FALSE;
+	}
+	$res=$res->fetchAll();
+	return $res;
+}
+function modificar($cod, $Correo, $Clave, $Pais, $CP, $Ciudad, $Direccion, $Rol){
+	$res = leer_config(dirname(__FILE__)."/configuracion.xml", dirname(__FILE__)."/configuracion.xsd");
+	$bd = new PDO($res[0], $res[1], $res[2]);
+	
+	$q = "UPDATE restaurantes SET Correo = '$Correo', Clave = '$Clave', Pais = '$Pais', CP = '$CP', Ciudad = '$Ciudad', Direccion = '$Direccion', Rol = '$Rol' WHERE CodRes = '$cod'";
+	$res = $bd->query($q);
+	if (!$res) {
+		return FALSE;
+	}
+	return $q;
+}

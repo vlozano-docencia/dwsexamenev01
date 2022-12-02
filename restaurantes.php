@@ -19,24 +19,28 @@
 	<body>
 		<?php 
 		require 'cabecera.php';
-		$pedidos = cargar_pedidos();		
-		if($pedidos === FALSE){
+		$usuarios = cargar_usuarios();		
+		if($usuarios === FALSE){
 			echo "<p class='error'>Error al conectar con la base datos</p>";
 			exit;
 		}
 		echo "<h1>". "USUARIOS". "</h1>";
 	
 		echo "<table>"; //abrir la tabla
-		echo "<tr><th>CodPed</th><th>Fecha</th><th>Enviado</th><th>Restaurante</th><th>Modificar</th></tr>";
-		foreach($pedidos as $pedido){
-			$cod = $pedido['CodPed'];
-			$fecha = $pedido['Fecha'];
-			$enviado = $pedido['Enviado'];
-			$restaurante = $pedido['Restaurante'];							
-			echo "<tr><td>$cod</td><td>$fecha</td><td>$enviado</td><td>$restaurante</td>
-			<td><form action = 'cambiar_estado.php' method = 'POST'>
+		echo "<tr><th>Correo</th><th>Clave</th><th>Pais</th><th>CP</th><th>Ciudad</th><th>Direccion</th><th>Rol</th></tr>";
+		foreach($usuarios as $usuario){
+			$cod = $usuario['CodRes'];
+			$Correo = $usuario['Correo'];
+			$Clave = $usuario['Clave'];
+			$Pais = $usuario['Pais'];	
+			$CP = $usuario['CP'];
+			$Ciudad = $usuario['Ciudad'];
+			$Direccion = $usuario['Direccion'];							
+			$Rol = $usuario['Rol'];
+			echo "<tr><form action = 'modificar.php' method = 'POST'><td><input type='text' name=Correo value=$Correo></td><td><input type='text'  name=Clave value=$Clave></td><td><input type='text'  name=Pais value=$Pais></td><td><input type='text'  name=CP value=$CP></td><td><input type='text'  name=Ciudad value=$Ciudad></td><td><input type='text'  name=Direccion value='$Direccion'></td><td><input type='text'  name=Rol value=$Rol></td>
+			<td>
 			<input type = 'submit' value='Modificar'><input name = 'cod' type='hidden' value = '$cod'>
-			</form></td></tr>";
+			</td></form></tr>";
 		}
 		echo "</table>";
 		?>				
